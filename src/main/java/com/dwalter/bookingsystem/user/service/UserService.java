@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserDbService implements UserDetailsService {
+public class UserService implements UserDetailsService {
     private static final String USER_NOT_FOUND = "User not found";
     private final UserRepository userRepository;
 
