@@ -1,9 +1,6 @@
 package com.dwalter.bookingsystem.user.domain;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,15 +10,17 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Builder
-@Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@ToString
+@Getter
 @Entity
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
+    private String username;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -42,7 +41,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override

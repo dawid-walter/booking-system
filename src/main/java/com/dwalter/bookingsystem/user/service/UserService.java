@@ -1,14 +1,14 @@
 package com.dwalter.bookingsystem.user.service;
 
 import com.dwalter.bookingsystem.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserService implements UserDetailsService {
     private static final String USER_NOT_FOUND = "User not found";
     private final UserRepository userRepository;
