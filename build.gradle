@@ -28,6 +28,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.19.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'

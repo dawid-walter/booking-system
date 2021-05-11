@@ -2,6 +2,7 @@ package com.dwalter.bookingsystem.user.userRegistration.controller;
 
 import com.dwalter.bookingsystem.user.userRegistration.domain.RegistrationRequest;
 import com.dwalter.bookingsystem.user.userRegistration.service.RegistrationService;
+import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
 import com.dwalter.bookingsystem.user.userRegistration.token.service.ConfirmationTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class RegistrationController {
     private final ConfirmationTokenService confirmationTokenService;
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
+    public ConfirmationToken register(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
     }
 

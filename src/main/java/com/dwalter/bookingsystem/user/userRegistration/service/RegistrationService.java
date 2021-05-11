@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -22,20 +21,20 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
 
-    public String register(RegistrationRequest request) {
+    public ConfirmationToken register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
 
         if (!isValidEmail) {
             throw new IllegalStateException(EMAIL_NOT_VALID);
         }
 
-        userService.register(User.builder()
+        ConfirmationToken registerToken = userService.register(User.builder()
                 .username(request.getFirstName())
                 .email(request.getEmail())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
                 .userRole(UserRole.USER)
                 .build());
 
-        return "Username " + request.getFirstName() + " successfully registered";
+        return registerToken;
     }
 }

@@ -19,4 +19,8 @@ public class UserDbService {
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    public User findByToken(String token) {
+        return userRepository.findByToken(token);
+    }
 }
