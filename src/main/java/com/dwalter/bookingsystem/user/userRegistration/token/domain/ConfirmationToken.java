@@ -1,16 +1,16 @@
 package com.dwalter.bookingsystem.user.userRegistration.token.domain;
 
 import com.dwalter.bookingsystem.user.domain.User;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
-@RequiredArgsConstructor
+@Setter
 @Entity
 public class ConfirmationToken {
     @Id
@@ -22,5 +22,4 @@ public class ConfirmationToken {
     private LocalDateTime confirmed;
     @ManyToOne
     private User user;
-
 }

@@ -5,9 +5,13 @@ import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.domain.UserRole;
 import com.dwalter.bookingsystem.user.service.UserService;
 import com.dwalter.bookingsystem.user.userRegistration.domain.RegistrationRequest;
+import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
+import com.dwalter.bookingsystem.user.userRegistration.token.service.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -16,6 +20,7 @@ public class RegistrationService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserService userService;
     private final EmailValidator emailValidator;
+    private final ConfirmationTokenService confirmationTokenService;
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());

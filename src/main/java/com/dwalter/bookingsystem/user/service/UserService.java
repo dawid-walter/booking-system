@@ -5,6 +5,7 @@ import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
 import com.dwalter.bookingsystem.user.userRegistration.token.service.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
@@ -49,7 +51,7 @@ public class UserService implements UserDetailsService {
                 .build();
 
         confirmationTokenService.saveToken(token);
-
+        log.info("Token created " + token.getToken());
         return token;
     }
 }
