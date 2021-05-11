@@ -24,7 +24,7 @@ public class RegistrationService {
             throw new IllegalStateException(EMAIL_NOT_VALID);
         }
 
-        userService.signUp(User.builder()
+        userService.register(User.builder()
                 .username(request.getFirstName())
                 .email(request.getEmail())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))

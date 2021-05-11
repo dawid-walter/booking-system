@@ -1,11 +1,17 @@
 package com.dwalter.bookingsystem.user.service;
 
+import com.dwalter.bookingsystem.config.Settings;
 import com.dwalter.bookingsystem.user.domain.User;
+import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
+import com.dwalter.bookingsystem.user.userRegistration.token.service.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -13,6 +19,7 @@ public class UserService implements UserDetailsService {
     private static final String USER_NOT_FOUND = "User not found";
     private static final String EMAIL_TAKEN = "Email already exist";
     private final UserDbService userDbService;
+    private final ConfirmationTokenService confirmationTokenService;
 
 
     @Override
@@ -20,7 +27,7 @@ public class UserService implements UserDetailsService {
         return userDbService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
     }
 
-    public void signUp(User user) {
+    public ConfirmationToken register(User user) {
         boolean userExists = userDbService
                 .findByUsername(user.getUsername())
                 .isPresent();
@@ -33,6 +40,16 @@ public class UserService implements UserDetailsService {
         }
 
         userDbService.save(user);
-    }
 
+        ConfirmationToken token = ConfirmationToken.builder()
+                .token(UUID.randomUUID().toString())
+                .created(LocalDateTime.now())
+                .expiring(LocalDateTime.now().plusMinutes(Settings.REGISTRATION_EMAIL_EXPIRATION_TIME))
+                .user(user)
+                .build();
+
+        confirmationTokenService.saveToken(token);
+
+        return token;
+    }
 }
