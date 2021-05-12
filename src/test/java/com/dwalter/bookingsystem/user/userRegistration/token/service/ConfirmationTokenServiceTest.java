@@ -5,12 +5,13 @@ import com.dwalter.bookingsystem.user.service.UserDbService;
 import com.dwalter.bookingsystem.user.userRegistration.domain.RegistrationRequest;
 import com.dwalter.bookingsystem.user.userRegistration.service.RegistrationService;
 import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@Disabled
 @SpringBootTest
 class ConfirmationTokenServiceTest {
     @Autowired

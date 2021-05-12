@@ -20,7 +20,7 @@ public class UserDbService {
         return userRepository.findByUsername(username);
     }
 
-    public User findByToken(String token) {
+    /*public User findByToken(String token) {
         return userRepository.findByToken(token);
-    }
+    }*/
 }
