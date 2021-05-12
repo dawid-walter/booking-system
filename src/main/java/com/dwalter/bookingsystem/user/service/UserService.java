@@ -1,6 +1,6 @@
 package com.dwalter.bookingsystem.user.service;
 
-import com.dwalter.bookingsystem.config.Settings;
+import com.dwalter.bookingsystem.util.Constants;
 import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
 import com.dwalter.bookingsystem.user.userRegistration.token.service.ConfirmationTokenService;
@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
         ConfirmationToken token = ConfirmationToken.builder()
                 .token(UUID.randomUUID().toString())
                 .created(LocalDateTime.now())
-                .expiring(LocalDateTime.now().plusMinutes(Settings.REGISTRATION_EMAIL_EXPIRATION_TIME))
+                .expiring(LocalDateTime.now().plusMinutes(Constants.REGISTRATION_EMAIL_EXPIRATION_TIME))
                 .user(user)
                 .build();
 

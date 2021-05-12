@@ -1,5 +1,5 @@
-package com.dwalter.bookingsystem.config;
+package com.dwalter.bookingsystem.util;
 
-public class Settings {
+public class Constants {
     public static final long REGISTRATION_EMAIL_EXPIRATION_TIME = 15;
 }
