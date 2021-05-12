@@ -2,8 +2,8 @@ package com.dwalter.bookingsystem.user.userRegistration.token.service;
 
 import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.service.UserDbService;
-import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
-import com.dwalter.bookingsystem.user.userRegistration.token.repository.ConfirmationTokenRepository;
+import com.dwalter.bookingsystem.user.userRegistration.token.domain.AuthenticationToken;
+import com.dwalter.bookingsystem.user.userRegistration.token.repository.AuthenticationTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,37 +13,37 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ConfirmationTokenService {
-    private final ConfirmationTokenRepository confirmationTokenRepository;
+public class AuthenticationTokenService {
+    private final AuthenticationTokenRepository authenticationTokenRepository;
     private final UserDbService userDbService;
 
-    public void saveToken(ConfirmationToken token) {
-        confirmationTokenRepository.save(token);
+    public void saveToken(AuthenticationToken token) {
+        authenticationTokenRepository.save(token);
     }
 
-    private Optional<ConfirmationToken> getToken(String token) {
-        return confirmationTokenRepository.findByToken(token);
+    private Optional<AuthenticationToken> getToken(String token) {
+        return authenticationTokenRepository.findByToken(token);
     }
 
     @Transactional
     public String confirmToken(String token) {
 
-        ConfirmationToken confirmationToken = getToken(token)
+        AuthenticationToken authenticationToken = getToken(token)
                 .orElseThrow(() ->
                         new IllegalStateException("Token not found"));
 
-        if (confirmationToken.getConfirmed() != null) {
+        if (authenticationToken.getConfirmed() != null) {
             throw new IllegalStateException("Email already confirmed");
         }
 
-        LocalDateTime expiredAt = confirmationToken.getExpiring();
+        LocalDateTime expiredAt = authenticationToken.getExpiring();
 
         if (expiredAt.isBefore(LocalDateTime.now())) {
             throw new IllegalStateException("Token expired");
         }
 
-        confirmationToken.setConfirmed(LocalDateTime.now());
-        User byUsername = userDbService.findByUsername(confirmationToken.getUser().getUsername())
+        authenticationToken.setConfirmed(LocalDateTime.now());
+        User byUsername = userDbService.findByUsername(authenticationToken.getUser().getUsername())
                 .orElseThrow(() ->
                         new IllegalStateException("User not found"));
         byUsername.setEnabled(true);

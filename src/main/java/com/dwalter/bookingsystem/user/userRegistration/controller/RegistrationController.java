@@ -2,8 +2,8 @@ package com.dwalter.bookingsystem.user.userRegistration.controller;
 
 import com.dwalter.bookingsystem.user.userRegistration.domain.RegistrationRequest;
 import com.dwalter.bookingsystem.user.userRegistration.service.RegistrationService;
-import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
-import com.dwalter.bookingsystem.user.userRegistration.token.service.ConfirmationTokenService;
+import com.dwalter.bookingsystem.user.userRegistration.token.domain.AuthenticationToken;
+import com.dwalter.bookingsystem.user.userRegistration.token.service.AuthenticationTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class RegistrationController {
     private final RegistrationService registrationService;
-    private final ConfirmationTokenService confirmationTokenService;
+    private final AuthenticationTokenService authenticationTokenService;
 
     @PostMapping
-    public ConfirmationToken register(@RequestBody RegistrationRequest request) {
+    public AuthenticationToken register(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
     }
 
     @GetMapping
     public String confirm(@RequestParam("token") String token) {
-        return confirmationTokenService.confirmToken(token);
+        return authenticationTokenService.confirmToken(token);
     }
 }

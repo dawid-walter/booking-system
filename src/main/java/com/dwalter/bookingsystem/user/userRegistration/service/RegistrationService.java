@@ -5,32 +5,39 @@ import com.dwalter.bookingsystem.service.message.EmailSender;
 import com.dwalter.bookingsystem.service.message.domain.Mail;
 import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.domain.UserRole;
-import com.dwalter.bookingsystem.user.service.UserService;
+import com.dwalter.bookingsystem.user.service.UserDbService;
 import com.dwalter.bookingsystem.user.userRegistration.domain.RegistrationRequest;
-import com.dwalter.bookingsystem.user.userRegistration.token.domain.ConfirmationToken;
+import com.dwalter.bookingsystem.user.userRegistration.token.domain.AuthenticationToken;
+import com.dwalter.bookingsystem.user.userRegistration.token.service.AuthenticationTokenService;
+import com.dwalter.bookingsystem.util.Constants;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class RegistrationService {
     private static final String EMAIL_NOT_VALID = "Email not valid";
+    private static final String EMAIL_TAKEN = "Email already exist";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final UserService userService;
+    private final AuthenticationTokenService authenticationTokenService;
+    private final UserDbService userDbService;
     private final EmailValidator emailValidator;
     private final EmailSender emailSender;
 
-    public ConfirmationToken register(RegistrationRequest request) {
+    public AuthenticationToken register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
 
         if (!isValidEmail) {
             throw new IllegalStateException(EMAIL_NOT_VALID);
         }
 
-
-        ConfirmationToken registerToken = userService.register(User.builder()
+        AuthenticationToken registerToken = registerUser(User.builder()
                 .username(request.getFirstName())
                 .email(request.getEmail())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
@@ -40,6 +47,29 @@ public class RegistrationService {
         emailSender.send(emailGenerator(request, registerToken.getToken()));
 
         return registerToken;
+    }
+
+    public AuthenticationToken registerUser(User user) {
+        boolean userExists = userDbService
+                .findByUsername(user.getUsername())
+                .isPresent();
+
+        if (userExists) {
+            throw new IllegalStateException(EMAIL_TAKEN);
+        }
+
+        userDbService.save(user);
+
+        AuthenticationToken token = AuthenticationToken.builder()
+                .token(UUID.randomUUID().toString())
+                .created(LocalDateTime.now())
+                .expiring(LocalDateTime.now().plusMinutes(Constants.REGISTRATION_EMAIL_EXPIRATION_TIME))
+                .user(user)
+                .build();
+
+        authenticationTokenService.saveToken(token);
+        log.info("Token created " + token.getToken());
+        return token;
     }
 
     private Mail emailGenerator(RegistrationRequest request, String token) {
