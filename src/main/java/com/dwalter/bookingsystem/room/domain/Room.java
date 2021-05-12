@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @ToString
 @Getter
 @Setter
-@Entity
+@Entity(name = "rooms")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
