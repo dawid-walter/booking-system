@@ -6,7 +6,6 @@ import com.dwalter.bookingsystem.room.exceptions.RoomNotFoundByIdException;
 import com.dwalter.bookingsystem.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.room.repository.RoomRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,7 +22,7 @@ public class RoomDbService {
         return roomRepository.findById(id);
     }
 
-    public List<Room> getAllRooms() {
+    public List<Room> getAll() {
         return roomRepository.findAll();
     }
 

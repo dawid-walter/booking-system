@@ -28,14 +28,15 @@ public class RoomController {
     @GetMapping
     public ResponseEntity<List<RoomDto>> get() {
         log.info("Get rooms!");
-        List<RoomDto> rooms = roomMapper.mapToRoomsDto(roomDbService.getAllRooms());
+        List<RoomDto> rooms = roomMapper.mapToRoomsDto(roomDbService.getAll());
         return new ResponseEntity<>(rooms, OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RoomDto> get(@PathVariable final Long id) {
         log.info("Get rooms by id: " + id);
-        RoomDto room = roomMapper.mapToRoomDto(roomDbService.getById(id).orElseThrow(() -> new RoomNotFoundByIdException(id)));
+        RoomDto room = roomMapper.mapToRoomDto(roomDbService.getById(id)
+                .orElseThrow(() -> new RoomNotFoundByIdException(id)));
         return new ResponseEntity<>(room, OK);
     }
 
