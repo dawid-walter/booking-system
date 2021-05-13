@@ -49,7 +49,7 @@ public class RoomController {
     @PutMapping
     public ResponseEntity<RoomDto> update(@RequestBody final RoomDto roomDto) {
         RoomDto updatedRoom = roomDbService.update(roomDto);
-        return new ResponseEntity<>(updatedRoom, CREATED);
+        return new ResponseEntity<>(updatedRoom, OK);
     }
 
     @DeleteMapping("/{id}")
