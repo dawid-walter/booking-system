@@ -1,20 +1,21 @@
 package com.dwalter.bookingsystem.room.controller;
 
 
+import com.dwalter.bookingsystem.room.domain.Room;
 import com.dwalter.bookingsystem.room.domain.RoomDto;
+import com.dwalter.bookingsystem.room.exceptions.RoomNotFoundByIdException;
 import com.dwalter.bookingsystem.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.room.service.RoomDbService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
 @RestController
@@ -32,9 +33,28 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RoomDto> getJob(@PathVariable final Long id) {
-        RoomDto room = roomMapper.mapToRoomDto(roomDbService.getById(id).orElseThrow(() -> new IllegalStateException("User not found")));
+    public ResponseEntity<RoomDto> get(@PathVariable final Long id) {
+        log.info("Get rooms by id: " + id);
+        RoomDto room = roomMapper.mapToRoomDto(roomDbService.getById(id).orElseThrow(() -> new RoomNotFoundByIdException(id)));
         return new ResponseEntity<>(room, OK);
+    }
+
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    public ResponseEntity<RoomDto> create(@RequestBody final RoomDto roomDto) {
+        RoomDto room = roomMapper.mapToRoomDto(roomDbService.create(roomMapper.mapToRoom(roomDto)));
+        return new ResponseEntity<>(room, CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<RoomDto> update(@RequestBody final RoomDto roomDto) {
+        RoomDto updatedRoom = roomDbService.update(roomDto);
+        return new ResponseEntity<>(updatedRoom, CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable final Long id) {
+        roomDbService.delete(id);
+        return new ResponseEntity<>("Room Deleted Successfully!", OK);
     }
 }
 

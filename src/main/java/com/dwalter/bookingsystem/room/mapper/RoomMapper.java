@@ -10,5 +10,7 @@ import java.util.List;
 public interface RoomMapper {
     RoomDto mapToRoomDto(Room room);
 
+    Room mapToRoom(RoomDto roomDto);
+
     List<RoomDto> mapToRoomsDto(List<Room> rooms);
 }
