@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,7 @@ public class ReservationDbService {
     }
 
     public Reservation create(Reservation reservation) {
+        reservation.setPlacingDate(LocalDateTime.now());
         return reservationRepository.save(reservation);
     }
 
