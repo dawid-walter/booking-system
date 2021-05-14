@@ -1,4 +1,4 @@
-package com.dwalter.bookingsystem.user.userRegistration.token.domain;
+package com.dwalter.bookingsystem.userRegistration.token.domain;
 
 import com.dwalter.bookingsystem.user.domain.User;
 import lombok.*;

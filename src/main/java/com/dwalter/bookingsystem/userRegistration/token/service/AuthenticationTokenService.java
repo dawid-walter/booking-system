@@ -1,9 +1,9 @@
-package com.dwalter.bookingsystem.user.userRegistration.token.service;
+package com.dwalter.bookingsystem.userRegistration.token.service;
 
 import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.service.UserDbService;
-import com.dwalter.bookingsystem.user.userRegistration.token.domain.AuthenticationToken;
-import com.dwalter.bookingsystem.user.userRegistration.token.repository.AuthenticationTokenRepository;
+import com.dwalter.bookingsystem.userRegistration.token.domain.AuthenticationToken;
+import com.dwalter.bookingsystem.userRegistration.token.repository.AuthenticationTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

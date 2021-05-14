@@ -1,14 +1,14 @@
-package com.dwalter.bookingsystem.user.userRegistration.service;
+package com.dwalter.bookingsystem.userRegistration.service;
 
-import com.dwalter.bookingsystem.service.EmailValidator;
+import com.dwalter.bookingsystem.service.message.EmailValidator;
 import com.dwalter.bookingsystem.service.message.EmailSender;
 import com.dwalter.bookingsystem.service.message.domain.Mail;
 import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.domain.UserRole;
 import com.dwalter.bookingsystem.user.service.UserDbService;
-import com.dwalter.bookingsystem.user.userRegistration.domain.RegistrationRequest;
-import com.dwalter.bookingsystem.user.userRegistration.token.domain.AuthenticationToken;
-import com.dwalter.bookingsystem.user.userRegistration.token.service.AuthenticationTokenService;
+import com.dwalter.bookingsystem.userRegistration.domain.RegistrationRequest;
+import com.dwalter.bookingsystem.userRegistration.token.domain.AuthenticationToken;
+import com.dwalter.bookingsystem.userRegistration.token.service.AuthenticationTokenService;
 import com.dwalter.bookingsystem.util.Constants;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
-package com.dwalter.bookingsystem.user.userRegistration.token.repository;
+package com.dwalter.bookingsystem.userRegistration.token.repository;
 
-import com.dwalter.bookingsystem.user.userRegistration.token.domain.AuthenticationToken;
+import com.dwalter.bookingsystem.userRegistration.token.domain.AuthenticationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

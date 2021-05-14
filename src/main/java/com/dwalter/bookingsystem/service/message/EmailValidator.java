@@ -1,4 +1,4 @@
-package com.dwalter.bookingsystem.service;
+package com.dwalter.bookingsystem.service.message;
 
 import org.springframework.stereotype.Service;
 

@@ -20,6 +20,8 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private LocalDateTime placingDate;
     private LocalDateTime reservationFrom;
     private LocalDateTime reservationTo;
+    private boolean paid = false;
 }

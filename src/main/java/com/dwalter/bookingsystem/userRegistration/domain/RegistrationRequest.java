@@ -1,4 +1,4 @@
-package com.dwalter.bookingsystem.user.userRegistration.domain;
+package com.dwalter.bookingsystem.userRegistration.domain;
 
 import lombok.*;
 

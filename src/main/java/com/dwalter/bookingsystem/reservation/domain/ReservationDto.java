@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 @Setter
 public class ReservationDto {
     private final Long id;
+    private LocalDateTime placingDate;
     private final LocalDateTime reservationFrom;
     private final LocalDateTime reservationTo;
+    private boolean paid;
 }
