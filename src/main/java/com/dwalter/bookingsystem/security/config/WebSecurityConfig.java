@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDbService userDbService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
+        provider.setPasswordEncoder(bCryptPasswordEncoder());
         provider.setUserDetailsService(userDbService);
         return provider;
     }
