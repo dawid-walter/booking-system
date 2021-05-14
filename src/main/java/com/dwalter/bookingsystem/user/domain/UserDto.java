@@ -1,12 +1,13 @@
 package com.dwalter.bookingsystem.user.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Getter
-@Setter
 public class UserDto {
     private Long id;
     private String username;
