@@ -1,7 +1,6 @@
 package com.dwalter.bookingsystem.room.controller;
 
 
-import com.dwalter.bookingsystem.room.domain.Room;
 import com.dwalter.bookingsystem.room.domain.RoomDto;
 import com.dwalter.bookingsystem.room.exceptions.RoomNotFoundByIdException;
 import com.dwalter.bookingsystem.room.mapper.RoomMapper;
