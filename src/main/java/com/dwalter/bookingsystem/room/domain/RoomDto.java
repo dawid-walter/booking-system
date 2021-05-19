@@ -1,8 +1,10 @@
 package com.dwalter.bookingsystem.room.domain;
 
+import com.dwalter.bookingsystem.reservation.domain.Reservation;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -18,4 +20,5 @@ public class RoomDto {
     private String description;
     private BigDecimal pricePerDay;
     private String imageUrl;
+    private List<Reservation> reservations;
 }

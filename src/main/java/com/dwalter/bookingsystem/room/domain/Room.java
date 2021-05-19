@@ -1,12 +1,11 @@
 package com.dwalter.bookingsystem.room.domain;
 
+import com.dwalter.bookingsystem.reservation.domain.Reservation;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -26,4 +25,6 @@ public class Room {
     private String description;
     private BigDecimal pricePerDay;
     private String imageUrl;
+    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER)
+    private List<Reservation> reservations;
 }

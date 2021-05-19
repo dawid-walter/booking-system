@@ -1,12 +1,10 @@
 package com.dwalter.bookingsystem.reservation.domain;
 
+import com.dwalter.bookingsystem.room.domain.Room;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Builder
 @AllArgsConstructor
@@ -20,8 +18,10 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime placingDate;
-    private LocalDateTime reservationFrom;
-    private LocalDateTime reservationTo;
+    private LocalDate placingDate;
+    private LocalDate reservationFrom;
+    private LocalDate reservationTo;
     private boolean paid = false;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Room room;
 }

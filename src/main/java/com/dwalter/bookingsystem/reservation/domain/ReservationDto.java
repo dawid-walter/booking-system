@@ -1,8 +1,10 @@
 package com.dwalter.bookingsystem.reservation.domain;
 
+import com.dwalter.bookingsystem.room.domain.Room;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Builder
 @AllArgsConstructor
@@ -12,8 +14,12 @@ import java.time.LocalDateTime;
 @Getter
 public class ReservationDto {
     private Long id;
-    private LocalDateTime placingDate;
-    private LocalDateTime reservationFrom;
-    private LocalDateTime reservationTo;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate placingDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate reservationFrom;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate reservationTo;
     private boolean paid;
+    private Room room;
 }
