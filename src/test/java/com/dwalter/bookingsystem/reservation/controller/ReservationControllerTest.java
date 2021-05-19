@@ -45,18 +45,21 @@ class ReservationControllerTest {
     void should_get_reservations() throws Exception {
         //Given
         ReservationDto reservation1 = ReservationDto.builder()
+                .id(1L)
                 .reservationFrom(LocalDate.of(2021, 4, 19))
                 .reservationTo(LocalDate.of(2021, 4, 20))
                 .paid(true)
                 .build();
 
         ReservationDto reservation2 = ReservationDto.builder()
+                .id(2L)
                 .reservationFrom(LocalDate.of(2021, 4, 21))
                 .reservationTo(LocalDate.of(2021, 4, 22))
                 .paid(true)
                 .build();
 
         ReservationDto reservation3 = ReservationDto.builder()
+                .id(3L)
                 .reservationFrom(LocalDate.of(2021, 4, 23))
                 .reservationTo(LocalDate.of(2021, 4, 24))
                 .paid(true)
@@ -68,8 +71,8 @@ class ReservationControllerTest {
         mockMvc.perform(get("/reservations"))
                 .andDo(print())
                 .andExpect(status().is(200))
-                .andExpect(content().contentType(APPLICATION_JSON_VALUE));
-                //.andExpect(jsonPath("$", hasSize(3)))
-                //.andExpect(jsonPath("$[0].id", is(1)));
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].id", is(1)));
     }
 }
