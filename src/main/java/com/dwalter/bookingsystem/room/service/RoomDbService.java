@@ -61,4 +61,8 @@ public class RoomDbService {
                     .collect(Collectors.toList());
         }
     }
+
+    public void deleteAll() {
+        roomRepository.deleteAll();
+    }
 }

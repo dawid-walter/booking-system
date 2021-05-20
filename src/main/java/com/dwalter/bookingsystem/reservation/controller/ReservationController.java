@@ -40,8 +40,8 @@ public class ReservationController {
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<ReservationRequest> create(@RequestBody final ReservationRequest reservationRequest) {
-        ReservationRequest reservation = reservationDbService.create(reservationRequest);
+    public ResponseEntity<ReservationDto> create(@RequestBody final ReservationRequest reservationRequest) {
+        ReservationDto reservation = reservationMapper.mapToReservationDto(reservationDbService.create(reservationRequest));
         return new ResponseEntity<>(reservation, CREATED);
     }
 

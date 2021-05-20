@@ -3,6 +3,8 @@ package com.dwalter.bookingsystem.reservation.service;
 import com.dwalter.bookingsystem.reservation.domain.ReservationRequest;
 import com.dwalter.bookingsystem.room.domain.Room;
 import com.dwalter.bookingsystem.room.repository.RoomRepository;
+import com.dwalter.bookingsystem.room.service.RoomDbService;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,37 @@ import java.time.Instant;
 import java.time.LocalDate;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@Transactional
+
 @SpringBootTest
 class ReservationDbServiceTest {
+    @Autowired
+    RoomDbService roomDbService;
 
+    @Autowired
+    ReservationDbService reservationDbService;
+
+    @Test
+    public void should_add_reservation() {
+        //GIVEN
+        Room room = Room.builder()
+                .title("Manhattan Mansion")
+                .description("In the heart of New York City.")
+                .imageUrl("https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200")
+                .pricePerDay(BigDecimal.valueOf(199.99))
+                .build();
+
+        Long roomId = roomDbService.create(room).getId();
+
+        ReservationRequest reservationRequest = ReservationRequest.builder()
+                .reservationFrom(LocalDate.of(2021, 05, 20))
+                .reservationTo(LocalDate.of(2021, 05, 21))
+                .roomId(roomId)
+                .build();
+        //WHEN
+        reservationDbService.create(reservationRequest);
+        //THEN
+        assertThat(reservationDbService.getAll().size()).isEqualTo(1);
+    }
 }

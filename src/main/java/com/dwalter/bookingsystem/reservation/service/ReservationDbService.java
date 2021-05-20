@@ -40,7 +40,7 @@ public class ReservationDbService {
 
 
     @Transactional
-    public ReservationRequest create(ReservationRequest reservationRequest) {
+    public Reservation create(ReservationRequest reservationRequest) {
         LocalDate timeNow = LocalDate.now();
         log.info("Create Reservation: " +
                 "Room_Id - " + reservationRequest.getRoomId() +
@@ -57,12 +57,12 @@ public class ReservationDbService {
                 .room(room)
                 .build();
 
-        reservationRepository.save(reservation);
+        Reservation savedReservation = reservationRepository.save(reservation);
         List<Reservation> roomReservations = room.getReservations();
         roomReservations.add(reservation);
         room.setReservations(roomReservations);
         roomDbService.update(roomMapper.mapToRoomDto(room));
-        return reservationRequest;
+        return savedReservation;
     }
 
     @Transactional
@@ -82,5 +82,9 @@ public class ReservationDbService {
         return getAll().stream()
                 .filter(reservation -> reservation.getRoom().getId().equals(id))
                 .collect(Collectors.toList());
+    }
+
+    public void deleteAll() {
+        reservationRepository.deleteAll();
     }
 }
