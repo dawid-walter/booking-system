@@ -2,17 +2,46 @@ package com.dwalter.bookingsystem.reservation.mapper;
 
 import com.dwalter.bookingsystem.reservation.domain.Reservation;
 import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
-import org.mapstruct.Mapper;
+import com.dwalter.bookingsystem.room.domain.Room;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper(componentModel = "spring")
-public interface ReservationMapper {
-    ReservationDto mapToReservationDto(Reservation reservation);
+@Component
+public class ReservationMapper {
+    public Reservation mapToReservation(ReservationDto reservationDto) {
+        return Reservation.builder()
+                .id(reservationDto.getId())
+                .reservationFrom(reservationDto.getReservationFrom())
+                .reservationTo(reservationDto.getReservationTo())
+                .placingDate(reservationDto.getPlacingDate())
+                .paid(reservationDto.isPaid())
+                .build();
+    }
 
-    Reservation mapToReservation(ReservationDto reservationDto);
+    public ReservationDto mapToReservationDto(Reservation reservation) {
+        return ReservationDto.builder()
+                .id(reservation.getId())
+                .reservationFrom(reservation.getReservationFrom())
+                .reservationTo(reservation.getReservationTo())
+                .placingDate(reservation.getPlacingDate())
+                .paid(reservation.isPaid())
+                .roomId(reservation.getRoom().getId())
+                .build();
+    }
 
-    List<ReservationDto> mapToReservationsDto(List<Reservation> reservations);
-
-    List<Reservation> mapToReservations(List<ReservationDto> reservationDtos);
+    public List<ReservationDto> mapToReservationsDto(List<Reservation> reservations) {
+        return reservations.stream()
+                .map(reservation ->
+                        ReservationDto.builder()
+                                .id(reservation.getId())
+                                .reservationFrom(reservation.getReservationFrom())
+                                .reservationTo(reservation.getReservationTo())
+                                .paid(reservation.isPaid())
+                                .roomId(reservation.getRoom().getId())
+                                .build()
+                )
+                .collect(Collectors.toList());
+    }
 }

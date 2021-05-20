@@ -2,6 +2,7 @@ package com.dwalter.bookingsystem.reservation.service;
 
 import com.dwalter.bookingsystem.reservation.domain.Reservation;
 import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
+import com.dwalter.bookingsystem.reservation.domain.ReservationRequest;
 import com.dwalter.bookingsystem.reservation.exceptions.ReservationNotFoundByIdException;
 import com.dwalter.bookingsystem.reservation.mapper.ReservationMapper;
 import com.dwalter.bookingsystem.reservation.repository.ReservationRepository;
@@ -39,28 +40,36 @@ public class ReservationDbService {
 
 
     @Transactional
-    public ReservationDto create(ReservationDto reservationDto) {
+    public ReservationRequest create(ReservationRequest reservationRequest) {
         log.info("Create Reservation_" +
-                "Room_Id - " + reservationDto.getRoom().getId() +
-                ", Start_Date - " + reservationDto.getReservationFrom() +
-                ", End_date - " + reservationDto.getReservationTo());
-        Room room = roomDbService.getById(reservationDto.getRoom().getId()).orElseThrow(() -> new ReservationNotFoundByIdException(reservationDto.getRoom().getId()));
-        Reservation reservation = reservationMapper.mapToReservation(reservationDto);
+                "Room_Id - " + reservationRequest.getRoomId() +
+                ", Start_Date - " + reservationRequest.getReservationFrom() +
+                ", End_date - " + reservationRequest.getReservationTo());
+
+        Room room = roomDbService.getById(reservationRequest.getRoomId()).orElseThrow(() -> new ReservationNotFoundByIdException(reservationRequest.getRoomId()));
+
+        Reservation reservation = Reservation.builder()
+                .reservationFrom(reservationRequest.getReservationFrom())
+                .reservationTo(reservationRequest.getReservationTo())
+                .placingDate(LocalDate.now())
+                .room(room)
+                .build();
+
+        reservationRepository.save(reservation);
         List<Reservation> roomReservations = room.getReservations();
         roomReservations.add(reservation);
         room.setReservations(roomReservations);
         roomDbService.update(roomMapper.mapToRoomDto(room));
-        reservationRepository.save(reservation);
-        return reservationDto;
+        return reservationRequest;
     }
 
     @Transactional
-    public ReservationDto update(ReservationDto reservationDto) {
+    public Reservation update(ReservationDto reservationDto) {
         Reservation reservation = reservationRepository.findById(reservationDto.getId())
                 .orElseThrow(() -> new ReservationNotFoundByIdException(reservationDto.getId()));
         reservation.setReservationFrom(reservationDto.getReservationFrom());
         reservation.setReservationTo(reservationDto.getReservationTo());
-        return reservationMapper.mapToReservationDto(reservation);
+        return reservation;
     }
 
     public void delete(Long id) {

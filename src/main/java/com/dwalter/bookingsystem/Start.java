@@ -29,7 +29,7 @@ public class Start {
                 .pricePerDay(BigDecimal.valueOf(199.99))
                 .build());
 
-        roomRepo.save(Room.builder()
+        Room room1 = roomRepo.save(Room.builder()
                 .title("Manhattan Mansion")
                 .description("In the heart of New York City.")
                 .imageUrl("https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200")
@@ -39,6 +39,7 @@ public class Start {
         reservationRepo.save(Reservation.builder()
                 .reservationFrom(LocalDate.of(2021, 4, 19))
                 .reservationTo(LocalDate.of(2021, 4, 20))
+                .room(room1)
                 .paid(true)
                 .build());
     }

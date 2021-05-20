@@ -1,6 +1,7 @@
 package com.dwalter.bookingsystem.reservation.controller;
 
 import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
+import com.dwalter.bookingsystem.reservation.domain.ReservationRequest;
 import com.dwalter.bookingsystem.reservation.exceptions.ReservationNotFoundByIdException;
 import com.dwalter.bookingsystem.reservation.mapper.ReservationMapper;
 import com.dwalter.bookingsystem.reservation.service.ReservationDbService;
@@ -39,14 +40,14 @@ public class ReservationController {
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<ReservationDto> create(@RequestBody final ReservationDto reservationDto) {
-        ReservationDto reservation = reservationDbService.create(reservationDto);
+    public ResponseEntity<ReservationRequest> create(@RequestBody final ReservationRequest reservationRequest) {
+        ReservationRequest reservation = reservationDbService.create(reservationRequest);
         return new ResponseEntity<>(reservation, CREATED);
     }
 
     @PutMapping
     public ResponseEntity<ReservationDto> update(@RequestBody final ReservationDto reservationDto) {
-        ReservationDto updateReservation = reservationDbService.update(reservationDto);
+        ReservationDto updateReservation = reservationMapper.mapToReservationDto(reservationDbService.update(reservationDto));
         return new ResponseEntity<>(reservationDto, OK);
     }
 

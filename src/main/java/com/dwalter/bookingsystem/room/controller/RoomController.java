@@ -7,9 +7,11 @@ import com.dwalter.bookingsystem.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.room.service.RoomDbService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -31,6 +33,13 @@ public class RoomController {
         return new ResponseEntity<>(rooms, OK);
     }
 
+    @GetMapping("/{from}{to}")
+    public ResponseEntity<List<RoomDto>> getInDateRange(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate from, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate to) {
+        log.info("Get rooms available from: " + from + " to: " + to);
+        List<RoomDto> rooms = roomMapper.mapToRoomsDto(roomDbService.getByDateRange(from, to));
+        return new ResponseEntity<>(rooms,OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<RoomDto> get(@PathVariable final Long id) {
         log.info("Get rooms by id: " + id);
@@ -47,7 +56,7 @@ public class RoomController {
 
     @PutMapping
     public ResponseEntity<RoomDto> update(@RequestBody final RoomDto roomDto) {
-        RoomDto updatedRoom = roomDbService.update(roomDto);
+        RoomDto updatedRoom = roomMapper.mapToRoomDto(roomDbService.update(roomDto));
         return new ResponseEntity<>(updatedRoom, OK);
     }
 

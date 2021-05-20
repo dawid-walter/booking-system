@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Builder
@@ -27,4 +28,9 @@ public class Room {
     private String imageUrl;
     @OneToMany(mappedBy = "room", fetch = FetchType.EAGER)
     private List<Reservation> reservations;
+
+    public boolean isRoomDateMatched(LocalDate from, LocalDate to) {
+        return reservations.stream()
+                .anyMatch(reservation -> from.isBefore(reservation.getReservationTo()) && to.isAfter(reservation.getReservationFrom()));
+    }
 }
