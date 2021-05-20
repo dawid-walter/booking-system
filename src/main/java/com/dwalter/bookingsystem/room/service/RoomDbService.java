@@ -56,7 +56,8 @@ public class RoomDbService {
             throw new RoomInDatesNotAvailable();
         } else {
             return rooms.stream()
-                    .filter(room -> room.isRoomDateMatched(from, to))
+                    .filter(room ->
+                            !room.isRoomDateMatched(from, to))
                     .collect(Collectors.toList());
         }
     }
