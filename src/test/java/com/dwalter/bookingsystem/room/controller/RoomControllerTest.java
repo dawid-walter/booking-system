@@ -2,6 +2,8 @@ package com.dwalter.bookingsystem.room.controller;
 
 import com.dwalter.bookingsystem.reservation.controller.ReservationController;
 import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
+import com.dwalter.bookingsystem.reservation.mapper.ReservationMapper;
+import com.dwalter.bookingsystem.reservation.service.ReservationDbService;
 import com.dwalter.bookingsystem.room.domain.RoomDto;
 import com.dwalter.bookingsystem.user.service.UserDbService;
 import org.junit.jupiter.api.DisplayName;
@@ -41,12 +43,19 @@ class RoomControllerTest {
     private UserDbService userDbService;
 
     @MockBean
+    private ReservationDbService reservationDbService;
+
+    @MockBean
+    private ReservationMapper reservationMapper;
+
+    @MockBean
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Test
     @DisplayName("/rooms | GET")
     void should_get_rooms() throws Exception {
         RoomDto room1 = RoomDto.builder()
+                .id(1L)
                 .title("Manhattan Mansion")
                 .description("In the heart of London.")
                 .imageUrl("https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200")
@@ -54,6 +63,7 @@ class RoomControllerTest {
                 .build();
 
         RoomDto room2 = RoomDto.builder()
+                .id(2L)
                 .title("Manhattan Mansion")
                 .description("In the heart of Witney.")
                 .imageUrl("https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200")
