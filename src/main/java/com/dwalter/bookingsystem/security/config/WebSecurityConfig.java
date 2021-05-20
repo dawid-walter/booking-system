@@ -25,7 +25,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/v*/registration/**",
                         "/rooms/**",
-                        "/reservations/**")
+                        "/reservations/**",
+                        "/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**",
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
@@ -39,7 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/swagger-resources/**",
                 "/configuration/security",
                 "/swagger-ui.html",
-                "/webjars/**");
+                "/webjars/**",
+                "/v3/api-docs/**",
+                "/swagger-ui/**");
     }
 
     @Override
