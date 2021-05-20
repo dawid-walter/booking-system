@@ -21,6 +21,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int capacity;
+    @Enumerated(EnumType.STRING)
     private Color color;
     private String title;
     private String description;
