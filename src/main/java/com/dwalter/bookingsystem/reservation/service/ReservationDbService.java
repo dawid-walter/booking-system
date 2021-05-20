@@ -7,10 +7,8 @@ import com.dwalter.bookingsystem.reservation.exceptions.ReservationNotFoundByIdE
 import com.dwalter.bookingsystem.reservation.mapper.ReservationMapper;
 import com.dwalter.bookingsystem.reservation.repository.ReservationRepository;
 import com.dwalter.bookingsystem.room.domain.Room;
-import com.dwalter.bookingsystem.room.exceptions.RoomNotFoundByIdException;
 import com.dwalter.bookingsystem.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.room.service.RoomDbService;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,5 @@
 package com.dwalter.bookingsystem.reservation.domain;
 
-import com.dwalter.bookingsystem.room.domain.Room;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 

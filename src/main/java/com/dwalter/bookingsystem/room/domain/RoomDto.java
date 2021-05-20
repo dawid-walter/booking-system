@@ -1,6 +1,5 @@
 package com.dwalter.bookingsystem.room.domain;
 
-import com.dwalter.bookingsystem.reservation.domain.Reservation;
 import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
 import lombok.*;
 

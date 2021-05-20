@@ -2,7 +2,6 @@ package com.dwalter.bookingsystem.reservation.mapper;
 
 import com.dwalter.bookingsystem.reservation.domain.Reservation;
 import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
-import com.dwalter.bookingsystem.room.domain.Room;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

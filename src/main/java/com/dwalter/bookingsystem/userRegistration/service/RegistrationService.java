@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.userRegistration.service;
 
-import com.dwalter.bookingsystem.service.message.EmailValidator;
 import com.dwalter.bookingsystem.service.message.EmailSender;
+import com.dwalter.bookingsystem.service.message.EmailValidator;
 import com.dwalter.bookingsystem.service.message.domain.Mail;
 import com.dwalter.bookingsystem.user.domain.User;
 import com.dwalter.bookingsystem.user.domain.UserRole;

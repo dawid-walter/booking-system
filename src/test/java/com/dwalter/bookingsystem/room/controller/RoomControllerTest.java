@@ -1,7 +1,6 @@
 package com.dwalter.bookingsystem.room.controller;
 
 import com.dwalter.bookingsystem.reservation.controller.ReservationController;
-import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
 import com.dwalter.bookingsystem.reservation.mapper.ReservationMapper;
 import com.dwalter.bookingsystem.reservation.service.ReservationDbService;
 import com.dwalter.bookingsystem.room.domain.RoomDto;
@@ -16,20 +15,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(ReservationController.class)
 class RoomControllerTest {

@@ -37,7 +37,7 @@ public class RoomController {
     public ResponseEntity<List<RoomDto>> getInDateRange(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate from, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate to) {
         log.info("Get rooms available from: " + from + " to: " + to);
         List<RoomDto> rooms = roomMapper.mapToRoomsDto(roomDbService.getByDateRange(from, to));
-        return new ResponseEntity<>(rooms,OK);
+        return new ResponseEntity<>(rooms, OK);
     }
 
     @GetMapping("/{id}")
