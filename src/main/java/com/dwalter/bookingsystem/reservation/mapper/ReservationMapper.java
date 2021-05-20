@@ -36,6 +36,7 @@ public class ReservationMapper {
                 .map(reservation ->
                         ReservationDto.builder()
                                 .id(reservation.getId())
+                                .placingDate(reservation.getPlacingDate())
                                 .reservationFrom(reservation.getReservationFrom())
                                 .reservationTo(reservation.getReservationTo())
                                 .paid(reservation.isPaid())

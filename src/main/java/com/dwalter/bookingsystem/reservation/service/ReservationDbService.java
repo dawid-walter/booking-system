@@ -41,17 +41,19 @@ public class ReservationDbService {
 
     @Transactional
     public ReservationRequest create(ReservationRequest reservationRequest) {
-        log.info("Create Reservation_" +
+        LocalDate timeNow = LocalDate.now();
+        log.info("Create Reservation: " +
                 "Room_Id - " + reservationRequest.getRoomId() +
                 ", Start_Date - " + reservationRequest.getReservationFrom() +
-                ", End_date - " + reservationRequest.getReservationTo());
+                ", End_date - " + reservationRequest.getReservationTo() +
+                " created at: " + timeNow);
 
         Room room = roomDbService.getById(reservationRequest.getRoomId()).orElseThrow(() -> new ReservationNotFoundByIdException(reservationRequest.getRoomId()));
 
         Reservation reservation = Reservation.builder()
+                .placingDate(timeNow)
                 .reservationFrom(reservationRequest.getReservationFrom())
                 .reservationTo(reservationRequest.getReservationTo())
-                .placingDate(LocalDate.now())
                 .room(room)
                 .build();
 
