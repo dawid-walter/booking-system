@@ -1,6 +1,6 @@
-package com.dwalter.bookingsystem.functionality.reservation.entity;
+package com.dwalter.bookingsystem.functionality.reservation.model;
 
-import com.dwalter.bookingsystem.functionality.room.entity.Room;
+import com.dwalter.bookingsystem.functionality.room.model.Room;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @ToString
 @Getter
 @Setter
-@Entity(name = "reservations")
+@Entity
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

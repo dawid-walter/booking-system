@@ -1,8 +1,8 @@
 package com.dwalter.bookingsystem.functionality.room.service;
 
 import com.dwalter.bookingsystem.functionality.room.mapper.RoomMapper;
-import com.dwalter.bookingsystem.functionality.room.entity.Room;
-import com.dwalter.bookingsystem.functionality.room.dto.RoomDto;
+import com.dwalter.bookingsystem.functionality.room.model.Room;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
 import com.dwalter.bookingsystem.functionality.room.exceptions.RoomInDatesNotAvailable;
 import com.dwalter.bookingsystem.functionality.room.exceptions.RoomNotFoundByIdException;
 import com.dwalter.bookingsystem.functionality.room.repository.RoomRepository;

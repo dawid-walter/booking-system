@@ -1,6 +1,6 @@
 package com.dwalter.bookingsystem.user.controller;
 
-import com.dwalter.bookingsystem.user.dto.UserDto;
+import com.dwalter.bookingsystem.user.controller.dto.UserDto;
 import com.dwalter.bookingsystem.user.exceptions.UserNotFoundException;
 import com.dwalter.bookingsystem.user.mapper.UserMapper;
 import com.dwalter.bookingsystem.user.service.UserDbService;

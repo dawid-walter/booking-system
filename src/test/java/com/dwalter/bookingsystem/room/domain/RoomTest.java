@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.room.domain;
 
-import com.dwalter.bookingsystem.functionality.reservation.entity.Reservation;
-import com.dwalter.bookingsystem.functionality.room.entity.Room;
+import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
+import com.dwalter.bookingsystem.functionality.room.model.Room;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

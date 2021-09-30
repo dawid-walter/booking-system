@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.functionality.comment.service;
 
-import com.dwalter.bookingsystem.functionality.comment.entity.Comment;
-import com.dwalter.bookingsystem.functionality.comment.dto.CommentDto;
+import com.dwalter.bookingsystem.functionality.comment.model.Comment;
+import com.dwalter.bookingsystem.functionality.comment.controller.dto.CommentDto;
 import com.dwalter.bookingsystem.functionality.comment.exceptions.CommentNotFoundByIdException;
 import com.dwalter.bookingsystem.functionality.comment.mapper.CommentMapper;
 import com.dwalter.bookingsystem.functionality.comment.repository.CommentRepository;

@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.functionality.reservation.mapper;
 
-import com.dwalter.bookingsystem.functionality.reservation.entity.Reservation;
-import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationDto;
+import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
+import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

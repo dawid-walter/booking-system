@@ -3,7 +3,7 @@ package com.dwalter.bookingsystem.functionality.room.controller;
 
 import com.dwalter.bookingsystem.functionality.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.functionality.room.service.RoomDbService;
-import com.dwalter.bookingsystem.functionality.room.dto.RoomDto;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
 import com.dwalter.bookingsystem.functionality.room.exceptions.RoomNotFoundByIdException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

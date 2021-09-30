@@ -1,6 +1,6 @@
-package com.dwalter.bookingsystem.functionality.comment.entity;
+package com.dwalter.bookingsystem.functionality.comment.model;
 
-import com.dwalter.bookingsystem.user.entity.User;
+import com.dwalter.bookingsystem.user.model.User;
 import lombok.*;
 
 import javax.persistence.*;

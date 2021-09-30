@@ -4,7 +4,7 @@ import com.dwalter.bookingsystem.functionality.reservation.controller.Reservatio
 import com.dwalter.bookingsystem.functionality.reservation.mapper.ReservationMapper;
 import com.dwalter.bookingsystem.functionality.reservation.service.ReservationDbService;
 import com.dwalter.bookingsystem.functionality.room.controller.RoomController;
-import com.dwalter.bookingsystem.functionality.room.dto.RoomDto;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
 import com.dwalter.bookingsystem.user.service.UserDbService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

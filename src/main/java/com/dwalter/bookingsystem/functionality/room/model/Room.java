@@ -1,6 +1,6 @@
-package com.dwalter.bookingsystem.functionality.room.entity;
+package com.dwalter.bookingsystem.functionality.room.model;
 
-import com.dwalter.bookingsystem.functionality.reservation.entity.Reservation;
+import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @Getter
 @Setter
-@Entity(name = "rooms")
+@Entity
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

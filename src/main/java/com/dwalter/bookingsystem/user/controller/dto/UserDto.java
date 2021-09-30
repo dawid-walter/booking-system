@@ -1,6 +1,6 @@
-package com.dwalter.bookingsystem.user.dto;
+package com.dwalter.bookingsystem.user.controller.dto;
 
-import com.dwalter.bookingsystem.user.entity.UserRole;
+import com.dwalter.bookingsystem.user.model.UserRole;
 import lombok.*;
 
 @Builder

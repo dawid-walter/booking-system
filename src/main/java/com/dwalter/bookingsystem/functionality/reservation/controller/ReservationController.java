@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.functionality.reservation.controller;
 
-import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationDto;
-import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationRequest;
+import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
+import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationRequest;
 import com.dwalter.bookingsystem.functionality.reservation.mapper.ReservationMapper;
 import com.dwalter.bookingsystem.functionality.reservation.service.ReservationDbService;
 import com.dwalter.bookingsystem.functionality.reservation.exceptions.ReservationNotFoundByIdException;

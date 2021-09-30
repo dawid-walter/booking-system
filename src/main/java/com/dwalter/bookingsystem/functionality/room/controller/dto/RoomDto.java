@@ -1,7 +1,7 @@
-package com.dwalter.bookingsystem.functionality.room.dto;
+package com.dwalter.bookingsystem.functionality.room.controller.dto;
 
-import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationDto;
-import com.dwalter.bookingsystem.functionality.room.entity.Color;
+import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
+import com.dwalter.bookingsystem.functionality.room.model.Color;
 import lombok.*;
 
 import java.math.BigDecimal;

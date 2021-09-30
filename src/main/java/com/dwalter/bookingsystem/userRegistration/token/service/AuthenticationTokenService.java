@@ -1,6 +1,6 @@
 package com.dwalter.bookingsystem.userRegistration.token.service;
 
-import com.dwalter.bookingsystem.user.entity.User;
+import com.dwalter.bookingsystem.user.model.User;
 import com.dwalter.bookingsystem.user.service.UserDbService;
 import com.dwalter.bookingsystem.userRegistration.token.model.AuthenticationToken;
 import com.dwalter.bookingsystem.userRegistration.token.repository.AuthenticationTokenRepository;

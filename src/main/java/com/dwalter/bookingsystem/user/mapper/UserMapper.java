@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.user.mapper;
 
-import com.dwalter.bookingsystem.user.entity.User;
-import com.dwalter.bookingsystem.user.dto.UserDto;
+import com.dwalter.bookingsystem.user.model.User;
+import com.dwalter.bookingsystem.user.controller.dto.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

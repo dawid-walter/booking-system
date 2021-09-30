@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.functionality.comment.mapper;
 
-import com.dwalter.bookingsystem.functionality.comment.entity.Comment;
-import com.dwalter.bookingsystem.functionality.comment.dto.CommentDto;
+import com.dwalter.bookingsystem.functionality.comment.model.Comment;
+import com.dwalter.bookingsystem.functionality.comment.controller.dto.CommentDto;
 import org.mapstruct.Mapper;
 
 import java.util.List;

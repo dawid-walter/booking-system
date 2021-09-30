@@ -1,8 +1,8 @@
 package com.dwalter.bookingsystem.functionality.room.mapper;
 
-import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationDto;
-import com.dwalter.bookingsystem.functionality.room.entity.Room;
-import com.dwalter.bookingsystem.functionality.room.dto.RoomDto;
+import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
+import com.dwalter.bookingsystem.functionality.room.model.Room;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.dwalter.bookingsystem.user.repository;
 
-import com.dwalter.bookingsystem.user.entity.User;
+import com.dwalter.bookingsystem.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

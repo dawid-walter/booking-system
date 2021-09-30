@@ -1,12 +1,12 @@
 package com.dwalter.bookingsystem.functionality.reservation.service;
 
-import com.dwalter.bookingsystem.functionality.reservation.entity.Reservation;
-import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationDto;
-import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationRequest;
+import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
+import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
+import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationRequest;
 import com.dwalter.bookingsystem.functionality.reservation.mapper.ReservationMapper;
 import com.dwalter.bookingsystem.functionality.reservation.repository.ReservationRepository;
 import com.dwalter.bookingsystem.functionality.reservation.exceptions.ReservationNotFoundByIdException;
-import com.dwalter.bookingsystem.functionality.room.entity.Room;
+import com.dwalter.bookingsystem.functionality.room.model.Room;
 import com.dwalter.bookingsystem.functionality.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.functionality.room.service.RoomDbService;
 import lombok.RequiredArgsConstructor;

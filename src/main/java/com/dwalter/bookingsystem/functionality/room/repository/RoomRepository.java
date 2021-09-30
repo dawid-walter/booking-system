@@ -1,6 +1,6 @@
 package com.dwalter.bookingsystem.functionality.room.repository;
 
-import com.dwalter.bookingsystem.functionality.room.entity.Room;
+import com.dwalter.bookingsystem.functionality.room.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

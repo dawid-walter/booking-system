@@ -1,4 +1,4 @@
-package com.dwalter.bookingsystem.user.entity;
+package com.dwalter.bookingsystem.user.model;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

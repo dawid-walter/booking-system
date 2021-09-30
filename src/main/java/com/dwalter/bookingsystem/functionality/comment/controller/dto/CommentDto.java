@@ -1,6 +1,6 @@
-package com.dwalter.bookingsystem.functionality.comment.dto;
+package com.dwalter.bookingsystem.functionality.comment.controller.dto;
 
-import com.dwalter.bookingsystem.user.entity.User;
+import com.dwalter.bookingsystem.user.model.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
