@@ -1,8 +1,8 @@
 package com.dwalter.bookingsystem.userRegistration.controller;
 
-import com.dwalter.bookingsystem.userRegistration.domain.RegistrationRequest;
+import com.dwalter.bookingsystem.userRegistration.model.RegistrationRequest;
 import com.dwalter.bookingsystem.userRegistration.service.RegistrationService;
-import com.dwalter.bookingsystem.userRegistration.token.domain.AuthenticationToken;
+import com.dwalter.bookingsystem.userRegistration.token.model.AuthenticationToken;
 import com.dwalter.bookingsystem.userRegistration.token.service.AuthenticationTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,3 +24,4 @@ public class RegistrationController {
         return authenticationTokenService.confirmToken(token);
     }
 }
+

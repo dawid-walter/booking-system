@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.user.service;
 
-import com.dwalter.bookingsystem.user.domain.User;
-import com.dwalter.bookingsystem.user.domain.UserDto;
+import com.dwalter.bookingsystem.user.entity.User;
+import com.dwalter.bookingsystem.user.dto.UserDto;
 import com.dwalter.bookingsystem.user.exceptions.UserNotFoundException;
 import com.dwalter.bookingsystem.user.mapper.UserMapper;
 import com.dwalter.bookingsystem.user.repository.UserRepository;

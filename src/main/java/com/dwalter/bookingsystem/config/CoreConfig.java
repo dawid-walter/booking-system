@@ -17,16 +17,7 @@ public class CoreConfig implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.dwalter"))
-                .paths(PathSelectors.ant("/**"))
+                .paths(PathSelectors.any())
                 .build();
-    }
-
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/jobs/**").addResourceLocations("/jobs/").setCachePeriod(0);
-        registry.addResourceHandler("/images/**").addResourceLocations("/images/").setCachePeriod(0);
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(0);
-        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }

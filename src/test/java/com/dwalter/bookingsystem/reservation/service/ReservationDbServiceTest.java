@@ -1,8 +1,9 @@
 package com.dwalter.bookingsystem.reservation.service;
 
-import com.dwalter.bookingsystem.reservation.domain.ReservationRequest;
-import com.dwalter.bookingsystem.room.domain.Room;
-import com.dwalter.bookingsystem.room.service.RoomDbService;
+import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationRequest;
+import com.dwalter.bookingsystem.functionality.reservation.service.ReservationDbService;
+import com.dwalter.bookingsystem.functionality.room.entity.Room;
+import com.dwalter.bookingsystem.functionality.room.service.RoomDbService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

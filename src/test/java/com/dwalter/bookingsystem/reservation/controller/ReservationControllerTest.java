@@ -1,6 +1,7 @@
 package com.dwalter.bookingsystem.reservation.controller;
 
-import com.dwalter.bookingsystem.reservation.domain.ReservationDto;
+import com.dwalter.bookingsystem.functionality.reservation.controller.ReservationController;
+import com.dwalter.bookingsystem.functionality.reservation.dto.ReservationDto;
 import com.dwalter.bookingsystem.user.service.UserDbService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
