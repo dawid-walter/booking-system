@@ -9,7 +9,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class ReservationMapper {
-    public Reservation mapToReservation(ReservationDto reservationDto) {
+    private ReservationMapper() {
+    }
+
+    public static Reservation mapToReservation(ReservationDto reservationDto) {
         return Reservation.builder()
                 .id(reservationDto.getId())
                 .reservationFrom(reservationDto.getReservationFrom())
@@ -19,7 +22,7 @@ public class ReservationMapper {
                 .build();
     }
 
-    public ReservationDto mapToReservationDto(Reservation reservation) {
+    public static ReservationDto mapToReservationDto(Reservation reservation) {
         return ReservationDto.builder()
                 .id(reservation.getId())
                 .reservationFrom(reservation.getReservationFrom())
@@ -30,7 +33,7 @@ public class ReservationMapper {
                 .build();
     }
 
-    public List<ReservationDto> mapToReservationsDto(List<Reservation> reservations) {
+    public static List<ReservationDto> mapToReservationsDto(List<Reservation> reservations) {
         return reservations.stream()
                 .map(reservation ->
                         ReservationDto.builder()

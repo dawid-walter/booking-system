@@ -22,32 +22,31 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/reservations")
 public class ReservationController {
     private final ReservationDbService reservationDbService;
-    private final ReservationMapper reservationMapper;
 
     @GetMapping
     public ResponseEntity<List<ReservationDto>> get() {
         log.info("Get reservations!");
-        List<ReservationDto> reservations = reservationMapper.mapToReservationsDto(reservationDbService.getAll());
+        List<ReservationDto> reservations = ReservationMapper.mapToReservationsDto(reservationDbService.getAll());
         return new ResponseEntity<>(reservations, OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ReservationDto> get(@PathVariable final Long id) {
         log.info("Get reservation by id: " + id);
-        ReservationDto reservation = reservationMapper.mapToReservationDto(reservationDbService.getById(id)
+        ReservationDto reservation = ReservationMapper.mapToReservationDto(reservationDbService.getById(id)
                 .orElseThrow(() -> new ReservationNotFoundByIdException(id)));
         return new ResponseEntity<>(reservation, OK);
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<ReservationDto> create(@RequestBody final ReservationRequest reservationRequest) {
-        ReservationDto reservation = reservationMapper.mapToReservationDto(reservationDbService.create(reservationRequest));
+        ReservationDto reservation = ReservationMapper.mapToReservationDto(reservationDbService.create(reservationRequest));
         return new ResponseEntity<>(reservation, CREATED);
     }
 
     @PutMapping
     public ResponseEntity<ReservationDto> update(@RequestBody final ReservationDto reservationDto) {
-        ReservationDto updateReservation = reservationMapper.mapToReservationDto(reservationDbService.update(reservationDto));
+        ReservationDto updateReservation = ReservationMapper.mapToReservationDto(reservationDbService.update(reservationDto));
         return new ResponseEntity<>(reservationDto, OK);
     }
 

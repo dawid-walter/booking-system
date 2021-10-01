@@ -10,7 +10,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class RoomMapper {
-    public Room mapToRoom(RoomDto roomDto) {
+    private RoomMapper() {
+    }
+
+    public static Room mapToRoom(RoomDto roomDto) {
         return Room.builder()
                 .id(roomDto.getId())
                 .capacity(roomDto.getCapacity())
@@ -21,7 +24,7 @@ public class RoomMapper {
                 .build();
     }
 
-    public RoomDto mapToRoomDto(final Room room) {
+    public static RoomDto mapToRoomDto(final Room room) {
         return RoomDto.builder()
                 .id(room.getId())
                 .capacity(room.getCapacity())
@@ -42,7 +45,7 @@ public class RoomMapper {
                 .build();
     }
 
-    public List<RoomDto> mapToRoomsDto(final List<Room> rooms) {
+    public static List<RoomDto> mapToRoomsDto(final List<Room> rooms) {
         return rooms.stream()
                 .map(room ->
                         RoomDto.builder()

@@ -8,18 +8,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Getter
 public class RoomDto {
-    private Long id;
-    private int capacity;
-    private Color color;
-    private String title;
-    private String description;
-    private BigDecimal pricePerDay;
-    private String imageUrl;
-    private List<ReservationDto> reservations;
+    private final Long id;
+    private final int capacity;
+    private final Color color;
+    private final String title;
+    private final String description;
+    private final BigDecimal pricePerDay;
+    private final String imageUrl;
+    private final List<ReservationDto> reservations;
 }

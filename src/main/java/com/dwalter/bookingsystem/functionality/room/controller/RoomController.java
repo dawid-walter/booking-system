@@ -24,39 +24,38 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/rooms")
 public class RoomController {
     private final RoomDbService roomDbService;
-    private final RoomMapper roomMapper;
 
     @GetMapping
     public ResponseEntity<List<RoomDto>> get() {
         log.info("Get rooms!");
-        List<RoomDto> rooms = roomMapper.mapToRoomsDto(roomDbService.getAll());
+        List<RoomDto> rooms = RoomMapper.mapToRoomsDto(roomDbService.getAll());
         return new ResponseEntity<>(rooms, OK);
     }
 
     @GetMapping("/inDate")
     public ResponseEntity<List<RoomDto>> getInDateRange(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate from, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate to) {
         log.info("Get rooms available from: " + from + " to: " + to);
-        List<RoomDto> rooms = roomMapper.mapToRoomsDto(roomDbService.getByDateRange(from, to));
+        List<RoomDto> rooms = RoomMapper.mapToRoomsDto(roomDbService.getByDateRange(from, to));
         return new ResponseEntity<>(rooms, OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RoomDto> get(@PathVariable final Long id) {
         log.info("Get rooms by id: " + id);
-        RoomDto room = roomMapper.mapToRoomDto(roomDbService.getById(id)
+        RoomDto room = RoomMapper.mapToRoomDto(roomDbService.getById(id)
                 .orElseThrow(() -> new RoomNotFoundByIdException(id)));
         return new ResponseEntity<>(room, OK);
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<RoomDto> create(@RequestBody final RoomDto roomDto) {
-        RoomDto room = roomMapper.mapToRoomDto(roomDbService.create(roomMapper.mapToRoom(roomDto)));
+        RoomDto room = RoomMapper.mapToRoomDto(roomDbService.create(RoomMapper.mapToRoom(roomDto)));
         return new ResponseEntity<>(room, CREATED);
     }
 
     @PutMapping
     public ResponseEntity<RoomDto> update(@RequestBody final RoomDto roomDto) {
-        RoomDto updatedRoom = roomMapper.mapToRoomDto(roomDbService.update(roomDto));
+        RoomDto updatedRoom = RoomMapper.mapToRoomDto(roomDbService.update(roomDto));
         return new ResponseEntity<>(updatedRoom, OK);
     }
 

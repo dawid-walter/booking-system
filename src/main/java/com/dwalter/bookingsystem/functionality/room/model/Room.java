@@ -30,6 +30,7 @@ public class Room {
     @OneToMany(mappedBy = "room", fetch = FetchType.EAGER)
     private List<Reservation> reservations;
 
+    @Transient
     public boolean isRoomDateMatched(LocalDate from, LocalDate to) {
         return reservations.stream()
                 .anyMatch(reservation -> from.isBefore(reservation.getReservationTo()) && to.isAfter(reservation.getReservationFrom()));

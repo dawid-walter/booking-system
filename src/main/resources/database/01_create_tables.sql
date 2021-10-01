@@ -1,7 +1,7 @@
 --liquibase formatted sql
 --changeset dwalter:1
 
-CREATE TABLE ROOMS
+CREATE TABLE ROOM
 (
     id            BIGINT AUTO_INCREMENT PRIMARY KEY,
     capacity      INT           NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE ROOMS
     title         VARCHAR(255)
 );
 
-CREATE TABLE RESERVATIONS
+CREATE TABLE RESERVATION
 (
     id               BIGINT AUTO_INCREMENT PRIMARY KEY,
     paid             BOOLEAN NOT NULL,
@@ -22,6 +22,6 @@ CREATE TABLE RESERVATIONS
     room_id          BIGINT
 );
 
-ALTER TABLE RESERVATIONS
+ALTER TABLE RESERVATION
     ADD CONSTRAINT reservation_room_id
         FOREIGN KEY (room_id) REFERENCES room
