@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -26,7 +27,6 @@ public class ReservationDbService {
     private final ReservationRepository reservationRepository;
     private final ReservationMapper reservationMapper;
     private final RoomDbService roomDbService;
-    private final RoomMapper roomMapper;
 
     public List<Reservation> getAll() {
         return reservationRepository.findAll();
@@ -56,10 +56,10 @@ public class ReservationDbService {
                 .build();
 
         Reservation savedReservation = reservationRepository.save(reservation);
-        List<Reservation> roomReservations = room.getReservations();
+        Set<Reservation> roomReservations = room.getReservations();
         roomReservations.add(reservation);
         room.setReservations(roomReservations);
-        roomDbService.update(roomMapper.mapToRoomDto(room));
+        roomDbService.update(RoomMapper.mapToRoomDto(room));
         return savedReservation;
     }
 

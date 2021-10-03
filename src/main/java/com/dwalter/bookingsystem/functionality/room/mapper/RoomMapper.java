@@ -1,5 +1,6 @@
 package com.dwalter.bookingsystem.functionality.room.mapper;
 
+import com.dwalter.bookingsystem.functionality.comment.controller.dto.CommentDto;
 import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
 import com.dwalter.bookingsystem.functionality.room.model.Room;
 import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
@@ -42,6 +43,14 @@ public class RoomMapper {
                                         .roomId(room.getId())
                                         .build())
                         .collect(Collectors.toList()))
+                .comments(room.getComments().stream()
+                        .map(comment ->
+                                CommentDto.builder()
+                                        .id(comment.getId())
+                                        .content(comment.getContent())
+                                        .created(comment.getCreated())
+                                        .build())
+                        .collect(Collectors.toList()))
                 .build();
     }
 
@@ -63,6 +72,14 @@ public class RoomMapper {
                                                         .reservationFrom(reservation.getReservationFrom())
                                                         .reservationTo(reservation.getReservationTo())
                                                         .roomId(room.getId())
+                                                        .build())
+                                        .collect(Collectors.toList()))
+                                .comments(room.getComments().stream()
+                                        .map(comment ->
+                                                CommentDto.builder()
+                                                        .id(comment.getId())
+                                                        .content(comment.getContent())
+                                                        .created(comment.getCreated())
                                                         .build())
                                         .collect(Collectors.toList()))
                                 .build()

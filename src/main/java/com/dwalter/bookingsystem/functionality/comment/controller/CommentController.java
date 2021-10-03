@@ -21,19 +21,18 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/comments")
 public class CommentController {
     private final CommentDbService commentDbService;
-    private final CommentMapper commentMapper;
 
     @GetMapping
     public ResponseEntity<List<CommentDto>> get() {
         log.info("Get comments!");
-        List<CommentDto> comments = commentMapper.mapToCommentsDto(commentDbService.getAll());
+        List<CommentDto> comments = CommentMapper.mapToCommentsDto(commentDbService.getAll());
         return new ResponseEntity<>(comments, OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CommentDto> get(@PathVariable final Long id) {
         log.info("get comments by id: " + id);
-        CommentDto comment = commentMapper.mapToCommentDto((commentDbService.getById(id))
+        CommentDto comment = CommentMapper.mapToCommentDto((commentDbService.getById(id))
                 .orElseThrow(() -> new CommentNotFoundByIdException(id)));
         return new ResponseEntity<>(comment, OK);
     }
@@ -41,7 +40,7 @@ public class CommentController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<CommentDto> create(@RequestBody final CommentDto commentDto) {
-        CommentDto comment = commentMapper.mapToCommentDto((commentDbService.create(commentMapper.mapToComment(commentDto))));
+        CommentDto comment = CommentMapper.mapToCommentDto((commentDbService.create(CommentMapper.mapToComment(commentDto))));
         return new ResponseEntity<>(comment, CREATED);
     }
 

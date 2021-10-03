@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class RoomDbService {
     private final RoomRepository roomRepository;
-    private final RoomMapper roomMapper;
 
     public Optional<Room> getById(Long id) {
         return roomRepository.findById(id);
@@ -27,6 +26,10 @@ public class RoomDbService {
 
     public List<Room> getAll() {
         return roomRepository.findAll();
+    }
+
+    public List<Room> getAllIncludingCommentsAndReservations() {
+        return roomRepository.findAllIncludingCommentsAnReservations();
     }
 
     public Room create(Room room) {
@@ -51,7 +54,7 @@ public class RoomDbService {
     }
 
     public List<Room> getByDateRange(LocalDate from, LocalDate to) {
-        List<Room> rooms = roomRepository.findAll();
+        List<Room> rooms = getAll();
         if (rooms.isEmpty()) {
             throw new RoomInDatesNotAvailable();
         } else {
@@ -65,4 +68,6 @@ public class RoomDbService {
     public void deleteAll() {
         roomRepository.deleteAll();
     }
+
+
 }

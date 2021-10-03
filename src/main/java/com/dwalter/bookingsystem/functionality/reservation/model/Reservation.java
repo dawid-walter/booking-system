@@ -9,8 +9,6 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Getter
 @Setter
 @Entity
@@ -22,6 +20,6 @@ public class Reservation {
     private LocalDate reservationFrom;
     private LocalDate reservationTo;
     private boolean paid = false;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Room room;
 }

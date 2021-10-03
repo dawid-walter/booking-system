@@ -1,5 +1,6 @@
 package com.dwalter.bookingsystem.functionality.room.controller.dto;
 
+import com.dwalter.bookingsystem.functionality.comment.controller.dto.CommentDto;
 import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
 import com.dwalter.bookingsystem.functionality.room.model.Color;
 import lombok.*;
@@ -21,4 +22,5 @@ public class RoomDto {
     private final BigDecimal pricePerDay;
     private final String imageUrl;
     private final List<ReservationDto> reservations;
+    private final List<CommentDto> comments;
 }

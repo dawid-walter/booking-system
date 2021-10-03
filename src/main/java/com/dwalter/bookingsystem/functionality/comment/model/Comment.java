@@ -1,5 +1,6 @@
 package com.dwalter.bookingsystem.functionality.comment.model;
 
+import com.dwalter.bookingsystem.functionality.room.model.Room;
 import com.dwalter.bookingsystem.user.model.User;
 import lombok.*;
 
@@ -16,8 +17,8 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime created;
     private String content;
-    @OneToOne
-    private User author;
+    private LocalDateTime created;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Room room;
 }

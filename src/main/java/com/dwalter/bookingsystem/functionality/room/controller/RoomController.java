@@ -28,7 +28,7 @@ public class RoomController {
     @GetMapping
     public ResponseEntity<List<RoomDto>> get() {
         log.info("Get rooms!");
-        List<RoomDto> rooms = RoomMapper.mapToRoomsDto(roomDbService.getAll());
+        List<RoomDto> rooms = RoomMapper.mapToRoomsDto(roomDbService.getAllIncludingCommentsAndReservations());
         return new ResponseEntity<>(rooms, OK);
     }
 

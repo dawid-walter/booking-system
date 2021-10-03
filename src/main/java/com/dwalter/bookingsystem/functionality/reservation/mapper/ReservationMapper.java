@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.functionality.reservation.mapper;
 
-import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
 import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
+import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -35,16 +35,7 @@ public class ReservationMapper {
 
     public static List<ReservationDto> mapToReservationsDto(List<Reservation> reservations) {
         return reservations.stream()
-                .map(reservation ->
-                        ReservationDto.builder()
-                                .id(reservation.getId())
-                                .placingDate(reservation.getPlacingDate())
-                                .reservationFrom(reservation.getReservationFrom())
-                                .reservationTo(reservation.getReservationTo())
-                                .paid(reservation.isPaid())
-                                .roomId(reservation.getRoom().getId())
-                                .build()
-                )
+                .map(ReservationMapper::mapToReservationDto)
                 .collect(Collectors.toList());
     }
 }

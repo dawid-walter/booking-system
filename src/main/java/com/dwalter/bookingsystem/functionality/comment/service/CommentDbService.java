@@ -15,8 +15,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CommentDbService {
-    CommentRepository commentRepository;
-    CommentMapper commentMapper;
+    private final CommentRepository commentRepository;
 
     public List<Comment> getAll() {
         return commentRepository.findAll();
@@ -35,10 +34,9 @@ public class CommentDbService {
     public CommentDto update(CommentDto commentDto) {
         Comment comment = commentRepository.findById(commentDto.getId())
                 .orElseThrow(() -> new CommentNotFoundByIdException(commentDto.getId()));
-        comment.setAuthor(commentDto.getAuthor());
         comment.setContent(commentDto.getContent());
         comment.setCreated(commentDto.getCreated());
-        return commentMapper.mapToCommentDto(comment);
+        return CommentMapper.mapToCommentDto(comment);
     }
 
     public void delete(Long id) {

@@ -14,6 +14,10 @@ configurations {
     }
 }
 
+compileJava {
+    options.compilerArgs << '-parameters'
+}
+
 repositories {
     mavenCentral()
 }
@@ -34,8 +38,24 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    testImplementation("org.assertj:assertj-core:3.19.0")
 }
 
 test {
     useJUnitPlatform()
+}
+
+task generatePostsAndComments() {
+    doLast {
+        File dataSql = file("src/main/resources/database/05_add_values_to_comment_table.sql")
+        dataSql.write("")
+        dataSql.append("--liquibase formatted sql\n" +
+                "--changeset dwalter:5\n")
+        //komentarze
+        for (int i = 1; i < 50; i++) {
+            int roomId = 1 + i / 10
+            dataSql.append("insert into COMMENT(id, content, created, room_id) " +
+                    "values (${i}, 'Comment ${i}', '" + LocalDateTime.now().minusDays(100 - i) + "', ${roomId});\n")
+        }
+    }
 }
