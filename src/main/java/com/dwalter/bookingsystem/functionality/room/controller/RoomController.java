@@ -28,7 +28,7 @@ public class RoomController {
     @GetMapping
     public ResponseEntity<List<RoomDto>> get() {
         log.info("Get rooms!");
-        List<RoomDto> rooms = RoomMapper.mapToRoomsDto(roomDbService.getAllIncludingCommentsAndReservations());
+        List<RoomDto> rooms = RoomMapper.mapToRoomsDto(roomDbService.getAll());
         return new ResponseEntity<>(rooms, OK);
     }
 
@@ -42,8 +42,8 @@ public class RoomController {
     @GetMapping("/{id}")
     public ResponseEntity<RoomDto> get(@PathVariable final Long id) {
         log.info("Get rooms by id: " + id);
-        RoomDto room = RoomMapper.mapToRoomDto(roomDbService.getById(id)
-                .orElseThrow(() -> new RoomNotFoundByIdException(id)));
+        RoomDto room = RoomMapper.mapToRoomDto(roomDbService.getWithCommentsById(id));
+
         return new ResponseEntity<>(room, OK);
     }
 

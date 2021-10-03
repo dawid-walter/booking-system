@@ -29,10 +29,11 @@ public class Room {
     private String description;
     private BigDecimal pricePerDay;
     private String imageUrl;
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER)
     private Set<Reservation> reservations;
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
-    private Set<Comment> comments;
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "room_id")
+    private List<Comment> comments;
 
     @Transient
     public boolean isRoomDateMatched(LocalDate from, LocalDate to) {

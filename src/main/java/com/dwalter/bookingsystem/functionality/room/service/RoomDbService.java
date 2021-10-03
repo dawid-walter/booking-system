@@ -1,10 +1,11 @@
 package com.dwalter.bookingsystem.functionality.room.service;
 
-import com.dwalter.bookingsystem.functionality.room.mapper.RoomMapper;
-import com.dwalter.bookingsystem.functionality.room.model.Room;
+import com.dwalter.bookingsystem.functionality.comment.model.Comment;
+import com.dwalter.bookingsystem.functionality.comment.repository.CommentRepository;
 import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
 import com.dwalter.bookingsystem.functionality.room.exceptions.RoomInDatesNotAvailable;
 import com.dwalter.bookingsystem.functionality.room.exceptions.RoomNotFoundByIdException;
+import com.dwalter.bookingsystem.functionality.room.model.Room;
 import com.dwalter.bookingsystem.functionality.room.repository.RoomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class RoomDbService {
     private final RoomRepository roomRepository;
+    private final CommentRepository commentRepository;
 
     public Optional<Room> getById(Long id) {
         return roomRepository.findById(id);
@@ -63,6 +65,14 @@ public class RoomDbService {
                             !room.isRoomDateMatched(from, to))
                     .collect(Collectors.toList());
         }
+    }
+
+    public Room getWithCommentsById(Long id) {
+        Optional<Room> byId = roomRepository.findById(id);
+        List<Comment> allByRoomId = commentRepository.findAllByRoomId(id);
+        Room room = byId.orElseThrow(() -> new RoomNotFoundByIdException(id));
+        room.setComments(allByRoomId);
+        return room;
     }
 
     public void deleteAll() {

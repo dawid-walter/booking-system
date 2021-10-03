@@ -19,6 +19,6 @@ public class Comment {
     private Long id;
     private String content;
     private LocalDateTime created;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Room room;
+    @Column(name = "room_id")
+    private Long roomId;
 }

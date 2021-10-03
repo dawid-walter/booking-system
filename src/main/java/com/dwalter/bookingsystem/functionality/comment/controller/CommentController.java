@@ -1,8 +1,10 @@
 package com.dwalter.bookingsystem.functionality.comment.controller;
 
 import com.dwalter.bookingsystem.functionality.comment.controller.dto.CommentDto;
+import com.dwalter.bookingsystem.functionality.comment.controller.dto.CreateCommentDto;
 import com.dwalter.bookingsystem.functionality.comment.exceptions.CommentNotFoundByIdException;
 import com.dwalter.bookingsystem.functionality.comment.mapper.CommentMapper;
+import com.dwalter.bookingsystem.functionality.comment.model.Comment;
 import com.dwalter.bookingsystem.functionality.comment.service.CommentDbService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +48,8 @@ public class CommentController {
 
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<CommentDto> create(@RequestBody final CommentDto commentDto) {
-        CommentDto comment = CommentMapper.mapToCommentDto((commentDbService.create(CommentMapper.mapToComment(commentDto))));
+    public ResponseEntity<Comment> create(@RequestBody final CreateCommentDto createCommentDto) {
+        Comment comment = commentDbService.create(CommentMapper.mapFromCreateToComment(createCommentDto));
         return new ResponseEntity<>(comment, CREATED);
     }
 
@@ -57,7 +59,7 @@ public class CommentController {
         return new ResponseEntity<>(updatedComment, OK);
     }
 
-    @DeleteMapping("/{id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable final Long id) {
         commentDbService.delete(id);
         return new ResponseEntity<>("Comment deleted Succesfully!", OK);
