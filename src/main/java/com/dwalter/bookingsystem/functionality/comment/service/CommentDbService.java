@@ -6,6 +6,7 @@ import com.dwalter.bookingsystem.functionality.comment.exceptions.CommentNotFoun
 import com.dwalter.bookingsystem.functionality.comment.mapper.CommentMapper;
 import com.dwalter.bookingsystem.functionality.comment.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,6 +20,10 @@ public class CommentDbService {
 
     public List<Comment> getAll() {
         return commentRepository.findAll();
+    }
+
+    public List<Comment> getAll(int page, int size) {
+        return commentRepository.findAll(PageRequest.of(page, size)).getContent();
     }
 
     public Optional<Comment> getById(Long id) {

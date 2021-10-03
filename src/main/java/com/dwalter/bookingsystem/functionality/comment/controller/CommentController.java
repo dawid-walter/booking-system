@@ -29,6 +29,13 @@ public class CommentController {
         return new ResponseEntity<>(comments, OK);
     }
 
+    @GetMapping("/paginated")
+    public ResponseEntity<List<CommentDto>> get(@RequestParam(defaultValue = "0", required = false) final int page, @RequestParam(defaultValue = "10", required = false) final int size) {
+        log.info("Get paginated comments!");
+        List<CommentDto> comments = CommentMapper.mapToCommentsDto(commentDbService.getAll(page, size));
+        return new ResponseEntity<>(comments, OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CommentDto> get(@PathVariable final Long id) {
         log.info("get comments by id: " + id);
