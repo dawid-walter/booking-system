@@ -59,7 +59,7 @@ public class ReservationDbService {
         Set<Reservation> roomReservations = room.getReservations();
         roomReservations.add(reservation);
         room.setReservations(roomReservations);
-        roomDbService.update(RoomMapper.mapToRoomDto(room));
+        roomDbService.update(RoomMapper.mapToUpdateRoom(room));
         return savedReservation;
     }
 

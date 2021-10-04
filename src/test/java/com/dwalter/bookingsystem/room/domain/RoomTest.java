@@ -7,15 +7,15 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RoomTest {
     private static Room getTestData() {
-        List<Reservation> reservations = new ArrayList<>();
+        Set<Reservation> reservations = new HashSet<>();
         reservations.add(Reservation.builder()
                 .reservationFrom(LocalDate.of(2021, 5, 21))
                 .reservationTo(LocalDate.of(2021, 5, 24))

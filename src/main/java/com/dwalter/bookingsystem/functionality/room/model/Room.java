@@ -32,7 +32,7 @@ public class Room {
     @OneToMany(mappedBy = "room", fetch = FetchType.EAGER)
     private Set<Reservation> reservations;
     @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", updatable = false, insertable = false)
     private List<Comment> comments;
 
     @Transient

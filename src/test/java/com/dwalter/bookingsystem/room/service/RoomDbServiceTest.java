@@ -2,6 +2,7 @@ package com.dwalter.bookingsystem.room.service;
 
 import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationRequest;
 import com.dwalter.bookingsystem.functionality.reservation.service.ReservationDbService;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
 import com.dwalter.bookingsystem.functionality.room.model.Room;
 import com.dwalter.bookingsystem.functionality.room.service.RoomDbService;
 import org.junit.jupiter.api.Test;
@@ -97,7 +98,7 @@ class RoomDbServiceTest {
         reservationDbService.create(reservationsRequest);
 
         //WHEN
-        List<Room> byDateRange = roomDbService.getByDateRange(LocalDate.of(2021, 05, 20), LocalDate.of(2021, 05, 21));
+        List<RoomDto> byDateRange = roomDbService.getByDateRange(LocalDate.of(2021, 05, 20), LocalDate.of(2021, 05, 21));
 
         //THEN
         assertThat(byDateRange.size()).isEqualTo(1);

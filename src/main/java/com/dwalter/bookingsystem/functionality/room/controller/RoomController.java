@@ -1,17 +1,16 @@
 package com.dwalter.bookingsystem.functionality.room.controller;
 
 
+import com.dwalter.bookingsystem.functionality.room.controller.dto.InRangeRequest;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.UpdateRoomRequest;
 import com.dwalter.bookingsystem.functionality.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.functionality.room.service.RoomDbService;
 import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
-import com.dwalter.bookingsystem.functionality.room.exceptions.RoomNotFoundByIdException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -33,15 +32,15 @@ public class RoomController {
     }
 
     @GetMapping("/inDate")
-    public ResponseEntity<List<RoomDto>> getInDateRange(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate from, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate to) {
-        log.info("Get rooms available from: " + from + " to: " + to);
-        List<RoomDto> rooms = RoomMapper.mapToRoomsDto(roomDbService.getByDateRange(from, to));
+    public ResponseEntity<List<RoomDto>> getInDateRange(InRangeRequest request) {
+        log.info("Get rooms available from: " + request.getFrom() + " to: " + request.getTo());
+        List<RoomDto> rooms = roomDbService.getByDateRange(request.getFrom(), request.getTo());
         return new ResponseEntity<>(rooms, OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RoomDto> get(@PathVariable final Long id) {
-        log.info("Get rooms by id: " + id);
+        log.info("Get room by id: " + id);
         RoomDto room = RoomMapper.mapToRoomDto(roomDbService.getWithCommentsById(id));
 
         return new ResponseEntity<>(room, OK);
@@ -54,8 +53,8 @@ public class RoomController {
     }
 
     @PutMapping
-    public ResponseEntity<RoomDto> update(@RequestBody final RoomDto roomDto) {
-        RoomDto updatedRoom = RoomMapper.mapToRoomDto(roomDbService.update(roomDto));
+    public ResponseEntity<RoomDto> update(@RequestBody final UpdateRoomRequest request) {
+        RoomDto updatedRoom = roomDbService.update(request);
         return new ResponseEntity<>(updatedRoom, OK);
     }
 

@@ -2,6 +2,7 @@ package com.dwalter.bookingsystem.functionality.room.mapper;
 
 import com.dwalter.bookingsystem.functionality.comment.controller.dto.CommentDto;
 import com.dwalter.bookingsystem.functionality.reservation.controller.dto.ReservationDto;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.UpdateRoomRequest;
 import com.dwalter.bookingsystem.functionality.room.model.Room;
 import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
 import org.springframework.stereotype.Component;
@@ -85,5 +86,18 @@ public class RoomMapper {
                                 .build()
                 )
                 .collect(Collectors.toList());
+    }
+
+    public static UpdateRoomRequest mapToUpdateRoom(Room room) {
+        return UpdateRoomRequest.builder()
+                .id(room.getId())
+                .capacity(room.getCapacity())
+                .color(room.getColor())
+                .description(room.getDescription())
+                .imageUrl(room.getImageUrl())
+                .pricePerDay(room.getPricePerDay())
+                .title(room.getTitle())
+                .build();
+
     }
 }

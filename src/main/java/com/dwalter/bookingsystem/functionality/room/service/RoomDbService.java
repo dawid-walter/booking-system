@@ -3,8 +3,10 @@ package com.dwalter.bookingsystem.functionality.room.service;
 import com.dwalter.bookingsystem.functionality.comment.model.Comment;
 import com.dwalter.bookingsystem.functionality.comment.repository.CommentRepository;
 import com.dwalter.bookingsystem.functionality.room.controller.dto.RoomDto;
+import com.dwalter.bookingsystem.functionality.room.controller.dto.UpdateRoomRequest;
 import com.dwalter.bookingsystem.functionality.room.exceptions.RoomInDatesNotAvailable;
 import com.dwalter.bookingsystem.functionality.room.exceptions.RoomNotFoundByIdException;
+import com.dwalter.bookingsystem.functionality.room.mapper.RoomMapper;
 import com.dwalter.bookingsystem.functionality.room.model.Room;
 import com.dwalter.bookingsystem.functionality.room.repository.RoomRepository;
 import lombok.AllArgsConstructor;
@@ -40,30 +42,31 @@ public class RoomDbService {
     }
 
     @Transactional
-    public Room update(RoomDto roomDto) {
-        Room room = roomRepository.findById(roomDto.getId())
-                .orElseThrow(() -> new RoomNotFoundByIdException(roomDto.getId()));
-        room.setTitle(roomDto.getTitle());
-        room.setCapacity(roomDto.getCapacity());
-        room.setColor(roomDto.getColor());
-        room.setDescription(roomDto.getDescription());
-        return room;
-
+    public RoomDto update(UpdateRoomRequest updateRoomrequest) {
+        Room room = roomRepository.findById(updateRoomrequest.getId())
+                .orElseThrow(() -> new RoomNotFoundByIdException(updateRoomrequest.getId()));
+        room.setTitle(updateRoomrequest.getTitle() != null ? updateRoomrequest.getTitle() : room.getTitle());
+        room.setCapacity(updateRoomrequest.getCapacity() != 0 ? updateRoomrequest.getCapacity() : room.getCapacity());
+        room.setColor(updateRoomrequest.getColor() != null ? updateRoomrequest.getColor() : room.getColor());
+        room.setDescription(updateRoomrequest.getDescription() != null ? updateRoomrequest.getDescription() : room.getDescription());
+        room.setPricePerDay(updateRoomrequest.getPricePerDay() != null ? updateRoomrequest.getPricePerDay() : room.getPricePerDay());
+        return RoomMapper.mapToRoomDto(room);
     }
 
     public void delete(Long id) {
         roomRepository.deleteById(id);
     }
 
-    public List<Room> getByDateRange(LocalDate from, LocalDate to) {
+    @Transactional
+    public List<RoomDto> getByDateRange(LocalDate from, LocalDate to) {
         List<Room> rooms = getAll();
         if (rooms.isEmpty()) {
             throw new RoomInDatesNotAvailable();
         } else {
-            return rooms.stream()
+            return RoomMapper.mapToRoomsDto(rooms.stream()
                     .filter(room ->
                             !room.isRoomDateMatched(from, to))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         }
     }
 
