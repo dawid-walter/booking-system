@@ -1,21 +1,20 @@
 package com.dwalter.bookingsystem.functionality.reservation.model;
 
 import com.dwalter.bookingsystem.functionality.room.model.Room;
+import com.dwalter.bookingsystem.model.BaseEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Reservation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Reservation extends BaseEntity {
     private LocalDate placingDate;
     private LocalDate reservationFrom;
     private LocalDate reservationTo;

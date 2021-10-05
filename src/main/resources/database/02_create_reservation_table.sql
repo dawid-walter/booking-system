@@ -4,7 +4,8 @@
 CREATE TABLE RESERVATION
 (
     id               BIGINT AUTO_INCREMENT PRIMARY KEY,
-    paid             BOOLEAN NOT NULL,
+    uuid             CHAR(36) NOT NULL DEFAULT '',
+    paid             BOOLEAN  NOT NULL,
     placing_date     DATE,
     reservation_from DATE,
     reservation_to   DATE,

@@ -2,7 +2,12 @@ package com.dwalter.bookingsystem.functionality.room.model;
 
 import com.dwalter.bookingsystem.functionality.comment.model.Comment;
 import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
-import lombok.*;
+import com.dwalter.bookingsystem.model.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,18 +15,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Getter
 @Setter
 @Entity
-public class Room {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Room extends BaseEntity {
     private int capacity;
     @Enumerated(EnumType.STRING)
     private Color color;

@@ -4,6 +4,7 @@
 CREATE TABLE COMMENT
 (
     id      BIGINT AUTO_INCREMENT PRIMARY KEY,
+    uuid    CHAR(36) NOT NULL DEFAULT '',
     content VARCHAR(2000) NULL,
     created timestamp,
     room_id BIGINT
