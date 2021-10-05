@@ -2,7 +2,7 @@ package com.dwalter.bookingsystem.functionality.room.model;
 
 import com.dwalter.bookingsystem.functionality.comment.model.Comment;
 import com.dwalter.bookingsystem.functionality.reservation.model.Reservation;
-import com.dwalter.bookingsystem.model.BaseEntity;
+import com.dwalter.bookingsystem.functionality.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

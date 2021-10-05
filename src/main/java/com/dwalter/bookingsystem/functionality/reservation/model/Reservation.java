@@ -1,7 +1,7 @@
 package com.dwalter.bookingsystem.functionality.reservation.model;
 
 import com.dwalter.bookingsystem.functionality.room.model.Room;
-import com.dwalter.bookingsystem.model.BaseEntity;
+import com.dwalter.bookingsystem.functionality.BaseEntity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

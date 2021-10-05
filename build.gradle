@@ -39,6 +39,8 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     testImplementation("org.assertj:assertj-core:3.19.0")
+    implementation 'com.auth0:java-jwt:3.8.3'
+
 }
 
 test {
